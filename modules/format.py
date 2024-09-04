@@ -39,7 +39,8 @@ def format_json(json_string, streamlit=None):
         # Format the JSON with indentation for readability
         formatted_json = json.dumps(parsed_json, indent=4)
     except json.JSONDecodeError as e:
-        return f"Invalid JSON: {e}"
+        streamlit.code(f"Invalid JSON: {e}")
+        return False
     
     streamlit.code(formatted_json)
     
