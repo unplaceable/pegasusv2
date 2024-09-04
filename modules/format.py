@@ -1,6 +1,8 @@
 import json
 import sqlparse
 
+from modules.utils.utils import search_dict
+
 def format_list(csv_string, streamlit=None):
     # Split the string into a list based on newlines
     items = csv_string.strip().split('\n')
@@ -25,9 +27,15 @@ def format_list(csv_string, streamlit=None):
 
 
 def format_json(json_string, streamlit=None):
+
+    search_text = streamlit.text_input('Search', label_visibility='collapsed', placeholder='Search...')
+
     try:
         # Parse the JSON string
         parsed_json = json.loads(json_string)
+
+        if search_text:
+            parsed_json=search_dict(data=parsed_json, search_text=search_text)
         # Format the JSON with indentation for readability
         formatted_json = json.dumps(parsed_json, indent=4)
     except json.JSONDecodeError as e:

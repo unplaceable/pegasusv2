@@ -4,7 +4,8 @@ from modules.calculate import summary_count
 
 st.set_page_config(page_title="Pegasus", 
                    page_icon="https://cdn-icons-png.flaticon.com/512/1218/1218659.png",
-                   layout='wide')
+                   layout='wide',
+                   initial_sidebar_state='collapsed')
 
 col1, col2 = st.columns([2, 3])
 
